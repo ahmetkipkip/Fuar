@@ -9,7 +9,7 @@ import mediapipe as mp
 mp_selfie_segmentation = mp.solutions.selfie_segmentation
 selfie_segmentation = mp_selfie_segmentation.SelfieSegmentation(model_selection=1)
 
-background_image = cv2.imread('image.jpg')
+background_image = cv2.imread('/home/image.jpg')
 
 st.title("Webcam Live Stream and Capture")
 
