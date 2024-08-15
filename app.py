@@ -4,7 +4,7 @@ from streamlit_webrtc import WebRtcMode, webrtc_streamer
 import cv2
 import numpy as np
 from PIL import Image
-#import mediapipe as mp
+import mediapipe as mp
 #from rembg import remove, new_session
 from utils import get_ice_servers
 
