@@ -6,8 +6,10 @@ import numpy as np
 from PIL import Image
 import mediapipe as mp
 from rembg import remove, new_session
+from utils import get_ice_servers
 
 session = new_session()
+
 
 mp_selfie_segmentation = mp.solutions.selfie_segmentation
 selfie_segmentation = mp_selfie_segmentation.SelfieSegmentation(model_selection=1)
@@ -16,7 +18,7 @@ selfie_segmentation = mp_selfie_segmentation.SelfieSegmentation(model_selection=
 
 background_image = cv2.imread('image.jpg')
 
-st.title("Webcam Live Stream and Capture")
+st.title("Fuar demo")
 
 def virtual_bg_callback(frame: av.VideoFrame) -> av.VideoFrame:
     print("processing")
