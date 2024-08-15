@@ -4,11 +4,11 @@ from streamlit_webrtc import WebRtcMode, webrtc_streamer
 import cv2
 import numpy as np
 from PIL import Image
-import mediapipe as mp
-from rembg import remove, new_session
+#import mediapipe as mp
+#from rembg import remove, new_session
 from utils import get_ice_servers
 
-session = new_session()
+#session = new_session() # we can't use same time with mediapipe. choose one of them
 
 
 mp_selfie_segmentation = mp.solutions.selfie_segmentation
@@ -43,10 +43,10 @@ def virtual_bg_callback(frame: av.VideoFrame) -> av.VideoFrame:
     
     return av.VideoFrame.from_ndarray(output_frame, format="bgr24")
 
-def rembg_callback(frame: av.VideoFrame) -> av.VideoFrame:
-    print("processing")
-    img = frame.to_image()
-    output_frame = remove(img, session=session)
+# def rembg_callback(frame: av.VideoFrame) -> av.VideoFrame:
+#     print("processing")
+#     img = frame.to_image()
+#     output_frame = remove(img, session=session)
     
     
     
