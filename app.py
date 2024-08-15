@@ -4,19 +4,19 @@ from streamlit_webrtc import WebRtcMode, webrtc_streamer
 import cv2
 import numpy as np
 from PIL import Image
-import mediapipe as mp
-#from rembg import remove, new_session
+#import mediapipe as mp
+from rembg import remove, new_session
 from utils import get_ice_servers
 
-#session = new_session() # we can't use same time with mediapipe. choose one of them
+session = new_session() # we can't use same time with mediapipe. choose one of them
 
 
-mp_selfie_segmentation = mp.solutions.selfie_segmentation
-selfie_segmentation = mp_selfie_segmentation.SelfieSegmentation(model_selection=1)
+#mp_selfie_segmentation = mp.solutions.selfie_segmentation
+#selfie_segmentation = mp_selfie_segmentation.SelfieSegmentation(model_selection=1)
 
 
 
-background_image = cv2.imread('r1.jpeg')
+#background_image = cv2.imread('r1.jpeg')
 
 st.title("Fuar demo")
 
@@ -43,10 +43,10 @@ def virtual_bg_callback(frame: av.VideoFrame) -> av.VideoFrame:
     
     return av.VideoFrame.from_ndarray(output_frame, format="bgr24")
 
-# def rembg_callback(frame: av.VideoFrame) -> av.VideoFrame:
-#     print("processing")
-#     img = frame.to_image()
-#     output_frame = remove(img, session=session)
+def rembg_callback(frame: av.VideoFrame) -> av.VideoFrame:
+    print("processing")
+    img = frame.to_image()
+    output_frame = remove(img, session=session)
     
     
     
@@ -62,7 +62,7 @@ webrtc_streamer(
         "iceServers": get_ice_servers(),
         "iceTransportPolicy": "relay",
     },
-    video_frame_callback=virtual_bg_callback,
+    video_frame_callback=rembg_callback,
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
 )
