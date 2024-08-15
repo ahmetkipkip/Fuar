@@ -34,7 +34,7 @@ mdurl==0.1.2
 mediapipe==0.10.14
 ml-dtypes==0.4.0
 narwhals==1.4.0
-numpy==2.0.1
+numpy==1.26.4
 opencv-python-headless
 opt-einsum==3.3.0
 packaging==24.1
