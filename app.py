@@ -2,6 +2,7 @@ import streamlit as st
 import av
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 import cv2
+from utils import get_ice_servers
 # import numpy as np
 # from PIL import Image
 # import mediapipe as mp
@@ -49,6 +50,10 @@ def callback(frame: av.VideoFrame) -> av.VideoFrame:
 webrtc_streamer(
     key="opencv-filter",
     mode=WebRtcMode.SENDRECV,
+    rtc_configuration={
+        "iceServers": get_ice_servers(),
+        "iceTransportPolicy": "relay",
+    },
     video_frame_callback=callback,
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
