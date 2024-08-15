@@ -16,7 +16,7 @@ selfie_segmentation = mp_selfie_segmentation.SelfieSegmentation(model_selection=
 
 
 
-background_image = cv2.imread('image.jpg')
+background_image = cv2.imread('r1.jpg')
 
 st.title("Fuar demo")
 
